@@ -1,49 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive rating component</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <!-- Google Fonts: Overpass (필수: Tailwind config에서 사용) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS 빌드된 파일 -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <title>Interactive rating component</title>
 </head>
+
 <body>
 
-  <!-- Rating state start -->
+  <!-- Rating State (평점 입력 화면) -->
+  <main id="rating-state" class="min-h-screen flex items-center justify-center p-spacing-300">
+    <!-- 카드 컨테이너 -->
+    <article
+      class="w-full max-w-md bg-gradient-to-b from-grey-800 to-grey-850 rounded-[15px] sm:rounded-[30px] p-spacing-300 sm:p-spacing-400 md:px-spacing-300 md:py-spacing-400">
 
-  How did we do?
+      <!-- 별 아이콘 -->
+      <div
+        class="w-10 h-10 sm:w-12 sm:h-12 bg-grey-900 rounded-full flex items-center justify-center mb-spacing-200 sm:mb-spacing-300">
+        <svg width="17" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="m9.067.43 1.99 4.031c.112.228.33.386.58.422l4.45.647a.772.772 0 0 1 .427 1.316l-3.22 3.138a.773.773 0 0 0-.222.683l.76 4.431a.772.772 0 0 1-1.12.813l-3.98-2.092a.773.773 0 0 0-.718 0l-3.98 2.092a.772.772 0 0 1-1.119-.813l.76-4.431a.77.77 0 0 0-.222-.683L.233 6.846A.772.772 0 0 1 .661 5.53l4.449-.647a.772.772 0 0 0 .58-.422L7.68.43a.774.774 0 0 1 1.387 0Z"
+            fill="#FC7614" />
+        </svg>
+      </div>
 
-  Please let us know how we did with your support request. All feedback is appreciated 
-  to help us improve our offering!
+      <!-- 제목 -->
+      <h1 class="text-white text-preset-2 sm:text-preset-1 font-bold mb-spacing-100 sm:mb-spacing-200">
+        How did we do?
+      </h1>
 
-  1 2 3 4 5
+      <!-- 설명 텍스트 -->
+      <p class="text-grey-500 text-preset-5 sm:text-preset-4 mb-spacing-300">
+        Please let us know how we did with your support request. All feedback is appreciated to help us improve our
+        offering!
+      </p>
 
-  Submit
+      <!-- 평점 선택 폼 -->
+      <form id="rating-form" class="mb-spacing-300 sm:mb-spacing-400">
+        <div class="flex justify-between gap-3 sm:gap-4">
+          <!-- 평점 버튼 1 -->
+          <div class="flex-1">
+            <input type="radio" name="rating" id="rating-1" value="1" class="sr-only peer">
+            <label for="rating-1"
+              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              1
+            </label>
+          </div>
 
-  <!-- Rating state end -->
+          <!-- 평점 버튼 2 -->
+          <div class="flex-1">
+            <input type="radio" name="rating" id="rating-2" value="2" class="sr-only peer">
+            <label for="rating-2"
+              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              2
+            </label>
+          </div>
 
-  <!-- Thank you state start -->
+          <!-- 평점 버튼 3 -->
+          <div class="flex-1">
+            <input type="radio" name="rating" id="rating-3" value="3" class="sr-only peer">
+            <label for="rating-3"
+              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              3
+            </label>
+          </div>
 
-  You selected <!-- Add rating here --> out of 5
+          <!-- 평점 버튼 4 -->
+          <div class="flex-1">
+            <input type="radio" name="rating" id="rating-4" value="4" class="sr-only peer">
+            <label for="rating-4"
+              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              4
+            </label>
+          </div>
 
-  Thank you!
+          <!-- 평점 버튼 5 -->
+          <div class="flex-1">
+            <input type="radio" name="rating" id="rating-5" value="5" class="sr-only peer">
+            <label for="rating-5"
+              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              5
+            </label>
+          </div>
+        </div>
+      </form>
 
-  We appreciate you taking the time to give a rating. If you ever need more support, 
-  don’t hesitate to get in touch!
+      <!-- 제출 버튼 -->
+      <button type="submit" form="rating-form"
+        class="w-full bg-orange-500 text-white text-preset-5-bold uppercase rounded-full py-3 sm:py-4 transition-colors hover:bg-white hover:text-orange-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-orange-500">
+        Submit
+      </button>
 
-  <!-- Thank you state end -->
+    </article>
+  </main>
 
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+  <!-- Thank You State (감사 화면) -->
+  <main id="thankyou-state" class="hidden min-h-screen flex items-center justify-center p-spacing-300">
+    <!-- 카드 컨테이너 -->
+    <article
+      class="w-full max-w-md bg-gradient-to-b from-grey-800 to-grey-850 rounded-[15px] sm:rounded-[30px] p-spacing-300 sm:p-spacing-400 md:px-spacing-300 md:py-spacing-400 text-center">
+
+      <!-- 감사 이미지 -->
+      <div class="flex justify-center mb-spacing-300 sm:mb-spacing-400">
+        <svg width="162" height="108" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none">
+            <path
+              d="M30 93.744h73.645c3.96 0 7.638-2.058 9.7-5.435l26.706-43.744 9.217-15.098c2.12-3.47 5.902-5.573 10.011-5.573 3.96 0 7.638 2.058 9.7 5.435l9.217 15.098 26.706 43.744c2.062 3.377 5.74 5.435 9.7 5.435h73.645"
+              stroke="#FC7614" stroke-width="2" />
+            <circle fill="#FC7614" opacity=".5" cx="81" cy="54" r="32" />
+            <circle fill="#262E38" cx="81" cy="54" r="16" />
+            <circle fill="#FC7614" opacity=".5" cx="5" cy="54" r="16" />
+            <circle fill="#262E38" cx="5" cy="54" r="8" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- 선택된 평점 표시 -->
+      <p
+        class="inline-block bg-grey-900 text-orange-500 text-preset-5 sm:text-preset-4 px-5 py-2 rounded-full mb-spacing-300 sm:mb-spacing-400">
+        You selected <span id="selected-rating">0</span> out of 5
+      </p>
+
+      <!-- 감사 제목 -->
+      <h1 class="text-white text-preset-2 sm:text-preset-1 font-bold mb-spacing-100 sm:mb-spacing-200">
+        Thank you!
+      </h1>
+
+      <!-- 감사 메시지 -->
+      <p class="text-grey-500 text-preset-5 sm:text-preset-4">
+        We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in
+        touch!
+      </p>
+
+    </article>
+  </main>
+
+  <!-- JavaScript: 평점 제출 로직 -->
+  <script>
+    // DOM 요소 가져오기
+    const form = document.getElementById('rating-form');
+    const ratingState = document.getElementById('rating-state');
+    const thankyouState = document.getElementById('thankyou-state');
+    const selectedRatingSpan = document.getElementById('selected-rating');
+
+    // 폼 제출 이벤트 리스너
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // 페이지 새로고침 방지
+
+      // 선택된 평점 가져오기
+      const selectedRating = document.querySelector('input[name="rating"]:checked');
+
+      if (selectedRating) {
+        // 선택된 평점 값을 감사 화면에 표시
+        selectedRatingSpan.textContent = selectedRating.value;
+
+        // 화면 전환: Rating State 숨기고 Thank You State 표시
+        ratingState.classList.add('hidden');
+        thankyouState.classList.remove('hidden');
+      } else {
+        // 평점이 선택되지 않은 경우 알림
+        alert('Please select a rating before submitting.');
+      }
+    });
+  </script>
+
 </body>
+
 </html>

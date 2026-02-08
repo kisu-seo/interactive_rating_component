@@ -148,34 +148,8 @@
     </article>
   </main>
 
-  <!-- JavaScript: 평점 제출 로직 -->
-  <script>
-    // DOM 요소 가져오기
-    const form = document.getElementById('rating-form');
-    const ratingState = document.getElementById('rating-state');
-    const thankyouState = document.getElementById('thankyou-state');
-    const selectedRatingSpan = document.getElementById('selected-rating');
-
-    // 폼 제출 이벤트 리스너
-    form.addEventListener('submit', (e) => {
-      e.preventDefault(); // 페이지 새로고침 방지
-
-      // 선택된 평점 가져오기
-      const selectedRating = document.querySelector('input[name="rating"]:checked');
-
-      if (selectedRating) {
-        // 선택된 평점 값을 감사 화면에 표시
-        selectedRatingSpan.textContent = selectedRating.value;
-
-        // 화면 전환: Rating State 숨기고 Thank You State 표시
-        ratingState.classList.add('hidden');
-        thankyouState.classList.remove('hidden');
-      } else {
-        // 평점이 선택되지 않은 경우 알림
-        alert('Please select a rating before submitting.');
-      }
-    });
-  </script>
+  <!-- JavaScript 파일 연결: defer를 사용하여 HTML 파싱 완료 후 실행 -->
+  <script src="./src/main.js" defer></script>
 
 </body>
 

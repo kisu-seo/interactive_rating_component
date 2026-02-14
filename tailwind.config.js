@@ -2,26 +2,31 @@
 module.exports = {
   content: ["./*.html"],
   theme: {
+    // 커스텀 브레이크포인트 정의 (모바일: 기본, 태블릿: 768px+, 데스크톱: 1024px+)
+    screens: {
+      'md': '768px',   // 태블릿
+      'lg': '1024px',  // 데스크톱
+    },
     extend: {
       // style-guide.md의 색상 팔레트
       colors: {
         // Primary
         'orange-500': '#FC7614',
-        
+
         // Neutral
         'white': '#FFFFFF',
         'black': '#000000',
-        
+
         // Grey Scale
         'grey-950': '#131518',
         'grey-900': '#262E38',
         'grey-500': '#969FAD',
-        
+
         // Gradient용 추가 색상
         'grey-800': '#232A34',
         'grey-850': '#181E27',
       },
-      
+
       // style-guide.md의 spacing 토큰
       spacing: {
         'spacing-0': '0px',
@@ -33,12 +38,12 @@ module.exports = {
         'spacing-1300': '104px',
         'spacing-1700': '136px',
       },
-      
+
       // style-guide.md의 타이포그래피
       fontFamily: {
         'overpass': ['Overpass', 'sans-serif'],
       },
-      
+
       // Text Preset 기반 폰트 크기
       fontSize: {
         'preset-1': ['28px', { lineHeight: '35px', letterSpacing: '0px' }],

@@ -1,4 +1,16 @@
-/* Tailwind CSS 기본 설정 */
+/**
+ * ============================================
+ * Tailwind CSS 커스텀 설정 및 컴포넌트 정의
+ * ============================================
+ * 
+ * [파일 역할]
+ * - Tailwind의 기본 레이어(base, components, utilities) 구성
+ * - 프로젝트 전역 스타일 및 재사용 가능한 컴포넌트 클래스 정의
+ * - 반응형 디자인 시스템 구현 (모바일 우선, 데스크톱 확장)
+ * 
+ * [빌드 프로세스]
+ * input.css (여기) → Tailwind CLI → dist/output.css (실제 사용)
+ */
 
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
@@ -108,7 +120,8 @@
   --tw-contain-style:  ;
 }
 
-/* ! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com
+ */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -555,15 +568,111 @@ video {
 }
 
 body {
+  /* 브랜드 타이포그래피: Overpass 폰트 적용 */
+  /* 배경색: 다크 테마 기반 (디자인 시안의 grey-950) */
   min-height: 100vh;
   --tw-bg-opacity: 1;
   background-color: rgb(19 21 24 / var(--tw-bg-opacity, 1));
   font-family: Overpass, sans-serif;
 }
 
-/* 평점 버튼 기본 스타일 */
+/* --------------------------------------------
+     카드 컨테이너
+     -------------------------------------------- */
+
+/* Why: 평점 입력 및 감사 화면의 공통 컨테이너 스타일
+     Design System: 모바일/데스크톱 반응형 크기 및 그라데이션 배경 정의 */
+
+.card-container {
+  /* 고정 크기: 디자인 시안 기준 (모바일 327x356px, 데스크톱 412x416px) */
+  height: 356px;
+  width: 327px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .card-container {
+    height: 416px;
+    width: 412px;
+  }
+}
+
+.card-container {
+  /* 브랜드 배경: 미묘한 그라데이션으로 깊이감 표현 */
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+  --tw-gradient-from: #232A34 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(35 42 52 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #181E27 var(--tw-gradient-to-position);
+  /* 모서리: 모바일 15px, 데스크톱 30px (시각적 소프트함 강조) */
+  border-radius: 15px;
+}
+
+@media (min-width: 768px) {
+  .card-container {
+    border-radius: 30px;
+  }
+}
+
+.card-container {
+  /* Flexbox 컨테이너: 자식 요소 수직 배치 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------
+     아이콘 원형 배경
+     -------------------------------------------- */
+
+/* Why: 별 아이콘을 감싸는 원형 버튼 스타일
+     Result: 브랜드 컬러와 대비되는 강조 효과 */
+
+.icon-circle {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .icon-circle {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+
+.icon-circle {
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(38 46 56 / var(--tw-bg-opacity, 1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------
+     평점 선택 버튼
+     -------------------------------------------- */
+
+/* Why: 1~5점 평점 버튼의 기본 + 호버 + 선택 상태 통합 관리
+     Design Pattern: Tailwind의 peer 패턴으로 radio 상태와 label 스타일 연동 */
 
 .rating-btn {
+  /* 고정 크기: 모바일 42x42px, 데스크톱 51x51px (터치 영역 확보) */
+  height: 42px;
+  width: 42px;
+}
+
+@media (min-width: 768px) {
+  .rating-btn {
+    height: 51px;
+    width: 51px;
+  }
+}
+
+.rating-btn {
+  /* 기본 상태: 회색 배경, 얇은 텍스트 */
   border-radius: 9999px;
   --tw-bg-opacity: 1;
   background-color: rgb(38 46 56 / var(--tw-bg-opacity, 1));
@@ -574,21 +683,215 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 1.87px;
+}
+
+@media (min-width: 768px) {
+  .rating-btn {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+  }
+}
+
+.rating-btn {
+  /* 트랜지션: 0.2초 부드러운 색상 전환 */
+  line-height: 1;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
+  /* 접근성: 포커스 시 주황색 아웃라인 표시 (키보드 네비게이션 지원) */
 }
 
-/* 평점 버튼 호버 상태 */
+.rating-btn:focus-within {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: #FC7614;
+}
 
-.rating-btn:hover {
+.rating-btn {
+  /* 데스크톱 호버: 흰색 배경으로 강조 (마우스 사용자 피드백) */
+}
+
+@media (min-width: 1024px) {
+  .rating-btn:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+    --tw-text-opacity: 1;
+    color: rgb(38 46 56 / var(--tw-text-opacity, 1));
+  }
+}
+
+/* 선택 상태 스타일
+     Why: radio 버튼 체크 시 label에 자동 적용 (peer 클래스 작동)
+     모바일: 회색 강조 (탭 친화적)
+     데스크톱: 주황색 강조 (브랜드 컬러) */
+
+.peer:checked+.rating-btn {
   --tw-bg-opacity: 1;
-  background-color: rgb(252 118 20 / var(--tw-bg-opacity, 1));
+  background-color: rgb(150 159 173 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-/* 평점 버튼 선택 상태 */
+@media (min-width: 1024px) {
+  .peer:checked+.rating-btn {
+    --tw-bg-opacity: 1;
+    background-color: rgb(252 118 20 / var(--tw-bg-opacity, 1));
+    --tw-text-opacity: 1;
+    color: rgb(38 46 56 / var(--tw-text-opacity, 1));
+  }
+}
+
+/* --------------------------------------------
+     제출 버튼
+     -------------------------------------------- */
+
+/* Why: CTA(Call-to-Action) 버튼으로 사용자 행동 유도
+     Design: 주황색 배경으로 시각적 우선순위 최상위 */
+
+.submit-btn {
+  /* 전체 너비: 카드 안에서 꽉 차는 레이아웃 */
+  height: 45px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .submit-btn {
+    height: auto;
+  }
+}
+
+.submit-btn {
+  /* 브랜드 컬러: 주황색 배경 + 진한 텍스트 (가독성 확보) */
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 118 20 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(19 21 24 / var(--tw-text-opacity, 1));
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 1.87px;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .submit-btn {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.17px;
+  }
+}
+
+.submit-btn {
+  /* 데스크톱 추가 패딩: 12.5px로 버튼 크기 확대 (클릭 영역 증가) */
+  border-radius: 9999px;
+}
+
+@media (min-width: 768px) {
+  .submit-btn {
+    padding-top: 12.5px;
+    padding-bottom: 12.5px;
+  }
+}
+
+.submit-btn {
+  /* 트랜지션: 호버 시 부드러운 색상 변화 */
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  /* 접근성: 포커스 시 아웃라인 + 오프셋 (명확한 시각적 피드백) */
+}
+
+.submit-btn:focus {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: #FC7614;
+}
+
+.submit-btn {
+  /* 데스크톱 호버: 흰색 배경으로 반전 효과 (인터랙티브 강조) */
+}
+
+@media (min-width: 1024px) {
+  .submit-btn:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+    --tw-text-opacity: 1;
+    color: rgb(19 21 24 / var(--tw-text-opacity, 1));
+  }
+}
+
+/* --------------------------------------------
+     선택된 평점 표시 배지
+     -------------------------------------------- */
+
+/* Why: 감사 화면에서 "You selected X out of 5" 텍스트 강조
+     Design: pill 형태의 배지 스타일 */
+
+.rating-badge {
+  /* 고정 너비: 모바일 168px, 데스크톱 193px (텍스트 길이 고려) */
+  height: 2rem;
+  width: 168px;
+}
+
+@media (min-width: 768px) {
+  .rating-badge {
+    width: 193px;
+  }
+}
+
+.rating-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 브랜드 강조: 주황색 텍스트 + 어두운 배경으로 대비 */
+  --tw-bg-opacity: 1;
+  background-color: rgb(38 46 56 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(252 118 20 / var(--tw-text-opacity, 1));
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0px;
+}
+
+@media (min-width: 768px) {
+  .rating-badge {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0px;
+  }
+}
+
+.rating-badge {
+  /* Pill 형태: 완전한 둥근 모서리 */
+  border-radius: 9999px;
+}
+
+/* --------------------------------------------
+     감사 화면 이미지
+     -------------------------------------------- */
+
+/* Why: 모바일에서는 작게, 데스크톱에서는 원본 크기로 표시
+     Design: 반응형 이미지 최적화 */
+
+.thank-you-image {
+  /* 모바일: 144x96px로 축소 (작은 화면 최적화) */
+  /* 데스크톱: 원본 크기(162x108px) 유지 */
+  height: 96px;
+  width: 144px;
+}
+
+@media (min-width: 768px) {
+  .thank-you-image {
+    height: auto;
+    width: auto;
+  }
+}
 
 .sr-only {
   position: absolute;
@@ -610,20 +913,12 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.mb-spacing-100 {
-  margin-bottom: 8px;
-}
-
 .mb-spacing-200 {
   margin-bottom: 16px;
 }
 
 .mb-spacing-300 {
   margin-bottom: 24px;
-}
-
-.inline-block {
-  display: inline-block;
 }
 
 .flex {
@@ -634,28 +929,8 @@ body {
   display: none;
 }
 
-.h-10 {
-  height: 2.5rem;
-}
-
-.h-\[42px\] {
-  height: 42px;
-}
-
 .min-h-screen {
   min-height: 100vh;
-}
-
-.w-10 {
-  width: 2.5rem;
-}
-
-.w-\[327px\] {
-  width: 327px;
-}
-
-.w-\[42px\] {
-  width: 42px;
 }
 
 .w-full {
@@ -678,59 +953,8 @@ body {
   gap: 1rem;
 }
 
-.rounded-\[15px\] {
-  border-radius: 15px;
-}
-
-.rounded-full {
-  border-radius: 9999px;
-}
-
-.bg-grey-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(38 46 56 / var(--tw-bg-opacity, 1));
-}
-
-.bg-orange-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 118 20 / var(--tw-bg-opacity, 1));
-}
-
-.bg-gradient-to-b {
-  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-}
-
-.from-grey-800 {
-  --tw-gradient-from: #232A34 var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(35 42 52 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.to-grey-850 {
-  --tw-gradient-to: #181E27 var(--tw-gradient-to-position);
-}
-
-.p-6 {
-  padding: 1.5rem;
-}
-
 .p-spacing-300 {
   padding: 24px;
-}
-
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .text-center {
@@ -749,18 +973,8 @@ body {
   letter-spacing: 0px;
 }
 
-.text-preset-5-bold {
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 1.87px;
-}
-
 .font-bold {
   font-weight: 700;
-}
-
-.uppercase {
-  text-transform: uppercase;
 }
 
 .text-grey-500 {
@@ -768,119 +982,23 @@ body {
   color: rgb(150 159 173 / var(--tw-text-opacity, 1));
 }
 
-.text-grey-950 {
-  --tw-text-opacity: 1;
-  color: rgb(19 21 24 / var(--tw-text-opacity, 1));
-}
-
-.text-orange-500 {
-  --tw-text-opacity: 1;
-  color: rgb(252 118 20 / var(--tw-text-opacity, 1));
-}
-
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
+/* ============================================
+   @layer base: 전역 기본 스타일
+   ============================================
+   Why: 모든 페이지에 공통 적용되는 베이스 스타일 정의 */
 
-/* 전역 스타일 */
-
-/* 커스텀 컴포넌트 (필요 시 추가) */
-
-.peer:checked ~ .peer-checked\:rating-btn-selected {
-  --tw-bg-opacity: 1;
-  background-color: rgb(150 159 173 / var(--tw-bg-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.focus-within\:outline:focus-within {
-  outline-style: solid;
-}
-
-.focus-within\:outline-2:focus-within {
-  outline-width: 2px;
-}
-
-.focus-within\:outline-orange-500:focus-within {
-  outline-color: #FC7614;
-}
-
-.hover\:bg-white:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.hover\:text-orange-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(252 118 20 / var(--tw-text-opacity, 1));
-}
-
-.focus\:outline:focus {
-  outline-style: solid;
-}
-
-.focus\:outline-2:focus {
-  outline-width: 2px;
-}
-
-.focus\:outline-offset-2:focus {
-  outline-offset: 2px;
-}
-
-.focus\:outline-orange-500:focus {
-  outline-color: #FC7614;
-}
-
-@media (min-width: 640px) {
-  .sm\:mb-spacing-200 {
-    margin-bottom: 16px;
-  }
-
-  .sm\:mb-spacing-400 {
-    margin-bottom: 32px;
-  }
-
-  .sm\:h-12 {
-    height: 3rem;
-  }
-
-  .sm\:w-12 {
-    width: 3rem;
-  }
-
-  .sm\:rounded-\[30px\] {
-    border-radius: 30px;
-  }
-
-  .sm\:text-preset-1 {
-    font-size: 28px;
-    line-height: 35px;
-    letter-spacing: 0px;
-  }
-
-  .sm\:text-preset-4 {
-    font-size: 15px;
-    line-height: 24px;
-    letter-spacing: 0px;
-  }
-}
+/* ============================================
+   @layer components: 재사용 가능한 UI 컴포넌트
+   ============================================
+   Why: HTML의 긴 클래스 체인을 간결한 시맨틱 이름으로 추상화
+        → 유지보수성 향상 및 디자인 일관성 확보 */
 
 @media (min-width: 768px) {
-  @media (min-width: 640px) {
-    .md\:sm\:text-preset-3 {
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 0.2px;
-    }
-  }
-
   .md\:mb-spacing-100 {
     margin-bottom: 8px;
   }
@@ -889,39 +1007,22 @@ body {
     margin-bottom: 32px;
   }
 
-  .md\:h-\[411px\] {
-    height: 411px;
-  }
-
-  .md\:h-\[51px\] {
-    height: 51px;
-  }
-
-  .md\:w-\[399px\] {
-    width: 399px;
-  }
-
-  .md\:w-\[51px\] {
-    width: 51px;
+  .md\:max-w-\[340px\] {
+    max-width: 340px;
   }
 
   .md\:gap-spacing-300 {
     gap: 24px;
   }
 
-  .md\:px-spacing-300 {
-    padding-left: 24px;
-    padding-right: 24px;
+  .md\:px-spacing-400 {
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
-  .md\:py-\[12\.5px\] {
-    padding-top: 12.5px;
-    padding-bottom: 12.5px;
-  }
-
-  .md\:py-spacing-400 {
-    padding-top: 32px;
-    padding-bottom: 32px;
+  .md\:py-spacing-500 {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .md\:text-preset-1 {
@@ -934,11 +1035,5 @@ body {
     font-size: 15px;
     line-height: 24px;
     letter-spacing: 0px;
-  }
-
-  .md\:text-preset-5-semibold {
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0.17px;
   }
 }

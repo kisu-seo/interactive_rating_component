@@ -1,32 +1,156 @@
-/* Tailwind CSS 기본 설정 */
+/**
+ * ============================================
+ * Tailwind CSS 커스텀 설정 및 컴포넌트 정의
+ * ============================================
+ * 
+ * [파일 역할]
+ * - Tailwind의 기본 레이어(base, components, utilities) 구성
+ * - 프로젝트 전역 스타일 및 재사용 가능한 컴포넌트 클래스 정의
+ * - 반응형 디자인 시스템 구현 (모바일 우선, 데스크톱 확장)
+ * 
+ * [빌드 프로세스]
+ * input.css (여기) → Tailwind CLI → dist/output.css (실제 사용)
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 전역 스타일 */
+/* ============================================
+   @layer base: 전역 기본 스타일
+   ============================================
+   Why: 모든 페이지에 공통 적용되는 베이스 스타일 정의 */
 @layer base {
   body {
+    /* 브랜드 타이포그래피: Overpass 폰트 적용 */
+    /* 배경색: 다크 테마 기반 (디자인 시안의 grey-950) */
     @apply font-overpass bg-grey-950 min-h-screen;
   }
 }
 
-/* 커스텀 컴포넌트 (필요 시 추가) */
+/* ============================================
+   @layer components: 재사용 가능한 UI 컴포넌트
+   ============================================
+   Why: HTML의 긴 클래스 체인을 간결한 시맨틱 이름으로 추상화
+        → 유지보수성 향상 및 디자인 일관성 확보 */
 @layer components {
 
-  /* 평점 버튼 기본 스타일 */
+  /* --------------------------------------------
+     카드 컨테이너
+     -------------------------------------------- */
+  /* Why: 평점 입력 및 감사 화면의 공통 컨테이너 스타일
+     Design System: 모바일/데스크톱 반응형 크기 및 그라데이션 배경 정의 */
+  .card-container {
+    /* 고정 크기: 디자인 시안 기준 (모바일 327x356px, 데스크톱 412x416px) */
+    @apply w-[327px] h-[356px] px-spacing-300 py-spacing-400;
+    @apply md:w-[412px] md:h-[416px];
+
+    /* 브랜드 배경: 미묘한 그라데이션으로 깊이감 표현 */
+    @apply bg-gradient-to-b from-grey-800 to-grey-850;
+
+    /* 모서리: 모바일 15px, 데스크톱 30px (시각적 소프트함 강조) */
+    @apply rounded-[15px] md:rounded-[30px];
+
+    /* Flexbox 컨테이너: 자식 요소 수직 배치 */
+    @apply flex flex-col;
+  }
+
+  /* --------------------------------------------
+     아이콘 원형 배경
+     -------------------------------------------- */
+  /* Why: 별 아이콘을 감싸는 원형 버튼 스타일
+     Result: 브랜드 컬러와 대비되는 강조 효과 */
+  .icon-circle {
+    @apply w-10 h-10 md:w-12 md:h-12;
+    @apply bg-grey-900 rounded-full;
+    @apply flex items-center justify-center;
+  }
+
+  /* --------------------------------------------
+     평점 선택 버튼
+     -------------------------------------------- */
+  /* Why: 1~5점 평점 버튼의 기본 + 호버 + 선택 상태 통합 관리
+     Design Pattern: Tailwind의 peer 패턴으로 radio 상태와 label 스타일 연동 */
   .rating-btn {
+    /* 고정 크기: 모바일 42x42px, 데스크톱 51x51px (터치 영역 확보) */
+    @apply w-[42px] h-[42px] md:w-[51px] md:h-[51px];
+
+    /* 기본 상태: 회색 배경, 얇은 텍스트 */
     @apply bg-grey-900 text-grey-500 rounded-full;
     @apply flex items-center justify-center font-bold cursor-pointer;
-    @apply transition-colors duration-200;
+    @apply text-preset-5-bold md:text-preset-3;
+
+    /* 트랜지션: 0.2초 부드러운 색상 전환 */
+    @apply transition-colors duration-200 leading-none;
+
+    /* 접근성: 포커스 시 주황색 아웃라인 표시 (키보드 네비게이션 지원) */
+    @apply focus-within:outline focus-within:outline-2 focus-within:outline-orange-500;
+
+    /* 데스크톱 호버: 흰색 배경으로 강조 (마우스 사용자 피드백) */
+    @apply lg:hover:bg-white lg:hover:text-grey-900;
   }
 
-  /* 평점 버튼 호버 상태 */
-  .rating-btn:hover {
-    @apply bg-orange-500 text-white;
-  }
-
-  /* 평점 버튼 선택 상태 */
-  .rating-btn-selected {
+  /* 선택 상태 스타일
+     Why: radio 버튼 체크 시 label에 자동 적용 (peer 클래스 작동)
+     모바일: 회색 강조 (탭 친화적)
+     데스크톱: 주황색 강조 (브랜드 컬러) */
+  .peer:checked+.rating-btn {
     @apply bg-grey-500 text-white;
+    @apply lg:bg-orange-500 lg:text-grey-900;
+  }
+
+  /* --------------------------------------------
+     제출 버튼
+     -------------------------------------------- */
+  /* Why: CTA(Call-to-Action) 버튼으로 사용자 행동 유도
+     Design: 주황색 배경으로 시각적 우선순위 최상위 */
+  .submit-btn {
+    /* 전체 너비: 카드 안에서 꽉 차는 레이아웃 */
+    @apply w-full h-[45px] md:h-auto;
+
+    /* 브랜드 컬러: 주황색 배경 + 진한 텍스트 (가독성 확보) */
+    @apply bg-orange-500 text-grey-950;
+    @apply text-preset-5-bold md:text-preset-5-semibold uppercase;
+
+    /* 데스크톱 추가 패딩: 12.5px로 버튼 크기 확대 (클릭 영역 증가) */
+    @apply rounded-full md:py-[12.5px];
+
+    /* 트랜지션: 호버 시 부드러운 색상 변화 */
+    @apply transition-colors;
+
+    /* 접근성: 포커스 시 아웃라인 + 오프셋 (명확한 시각적 피드백) */
+    @apply focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-orange-500;
+
+    /* 데스크톱 호버: 흰색 배경으로 반전 효과 (인터랙티브 강조) */
+    @apply lg:hover:bg-white lg:hover:text-grey-950;
+  }
+
+  /* --------------------------------------------
+     선택된 평점 표시 배지
+     -------------------------------------------- */
+  /* Why: 감사 화면에서 "You selected X out of 5" 텍스트 강조
+     Design: pill 형태의 배지 스타일 */
+  .rating-badge {
+    /* 고정 너비: 모바일 168px, 데스크톱 193px (텍스트 길이 고려) */
+    @apply w-[168px] h-8 md:w-[193px];
+    @apply flex items-center justify-center;
+
+    /* 브랜드 강조: 주황색 텍스트 + 어두운 배경으로 대비 */
+    @apply bg-grey-900 text-orange-500;
+    @apply text-preset-5 md:text-preset-4 md:px-4;
+
+    /* Pill 형태: 완전한 둥근 모서리 */
+    @apply rounded-full;
+  }
+
+  /* --------------------------------------------
+     감사 화면 이미지
+     -------------------------------------------- */
+  /* Why: 모바일에서는 작게, 데스크톱에서는 원본 크기로 표시
+     Design: 반응형 이미지 최적화 */
+  .thank-you-image {
+    /* 모바일: 144x96px로 축소 (작은 화면 최적화) */
+    /* 데스크톱: 원본 크기(162x108px) 유지 */
+    @apply w-[144px] h-[96px] md:w-auto md:h-auto;
   }
 }

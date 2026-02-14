@@ -4,16 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-
-  <!-- Google Fonts: Overpass (필수: Tailwind config에서 사용) -->
+  <!-- Google Fonts: Overpass 폰트 로드 (디자인 시스템의 기본 타이포그래피) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS 빌드된 파일 -->
+  <!-- Tailwind CSS 빌드된 최종 스타일시트 (src/input.css → dist/output.css) -->
   <link rel="stylesheet" href="./dist/output.css">
 
   <title>Interactive rating component</title>
@@ -21,120 +18,110 @@
 
 <body>
 
-  <!-- Rating State (평점 입력 화면) -->
+  <!-- ============================================
+       Rating State (평점 입력 화면)
+       - 초기 진입 시 표시되는 메인 화면
+       - 사용자가 1~5점 평점을 선택하고 제출
+       ============================================ -->
   <main id="rating-state" class="min-h-screen flex items-center justify-center p-spacing-300">
-    <!-- 카드 컨테이너 -->
-    <article
-      class="w-[327px] p-6 md:w-[399px] md:h-[411px] bg-gradient-to-b from-grey-800 to-grey-850 rounded-[15px] sm:rounded-[30px] md:px-spacing-300 md:py-spacing-400 flex flex-col justify-center">
+    <!-- 카드 컨테이너: 모바일 327x356px, 데스크톱 412x416px (디자인 시안 기준) -->
+    <article class="card-container justify-center">
 
-      <!-- 별 아이콘 -->
-      <div
-        class="w-10 h-10 sm:w-12 sm:h-12 bg-grey-900 rounded-full flex items-center justify-center mb-6 md:mb-spacing-400">
+      <!-- 별 아이콘 배경: 브랜드 시각 요소 강조 -->
+      <div class="icon-circle mb-6 md:mb-spacing-400">
+        <!-- aria-hidden="true": 장식 요소로 스크린 리더에서 무시 (시각적 의미만 있음) -->
         <img src="./images/icon-star.svg" alt="" aria-hidden="true">
       </div>
 
-      <!-- 제목 -->
       <h1 class="text-white text-preset-2 md:text-preset-1 font-bold mb-4 md:mb-spacing-100">
         How did we do?
       </h1>
 
-      <!-- 설명 텍스트 -->
       <p class="text-grey-500 text-preset-5 md:text-preset-4 mb-spacing-200">
         Please let us know how we did with your support request. All feedback is appreciated to help us improve our
         offering!
       </p>
 
-      <!-- 평점 선택 폼 -->
-      <form id="rating-form" class="mb-spacing-300 sm:mb-spacing-400 w-full">
+      <!-- 평점 선택 폼: 라디오 버튼으로 단일 선택 보장 -->
+      <form id="rating-form" class="mb-spacing-300 md:mb-spacing-400 w-full">
         <div class="flex justify-center gap-4 md:gap-spacing-300">
-          <!-- 평점 버튼 1 -->
+          <!-- 평점 버튼 구조 설명:
+               - input[type="radio"]: 실제 선택 상태 저장
+               - .sr-only: 스크린 리더 전용 (시각적으로 숨김, 접근성 유지)
+               - .peer: Tailwind의 상태 공유 클래스 (checked 상태를 label에 전달)
+               - label: 시각적 버튼 역할 (peer:checked 시 스타일 변경) -->
           <div>
             <input type="radio" name="rating" id="rating-1" value="1" class="sr-only peer">
-            <label for="rating-1"
-              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
-              1
-            </label>
+            <label for="rating-1" class="rating-btn">1</label>
           </div>
 
-          <!-- 평점 버튼 2 -->
           <div>
             <input type="radio" name="rating" id="rating-2" value="2" class="sr-only peer">
-            <label for="rating-2"
-              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
-              2
-            </label>
+            <label for="rating-2" class="rating-btn">2</label>
           </div>
 
-          <!-- 평점 버튼 3 -->
           <div>
             <input type="radio" name="rating" id="rating-3" value="3" class="sr-only peer">
-            <label for="rating-3"
-              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
-              3
-            </label>
+            <label for="rating-3" class="rating-btn">3</label>
           </div>
 
-          <!-- 평점 버튼 4 -->
           <div>
             <input type="radio" name="rating" id="rating-4" value="4" class="sr-only peer">
-            <label for="rating-4"
-              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
-              4
-            </label>
+            <label for="rating-4" class="rating-btn">4</label>
           </div>
 
-          <!-- 평점 버튼 5 -->
           <div>
             <input type="radio" name="rating" id="rating-5" value="5" class="sr-only peer">
-            <label for="rating-5"
-              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
-              5
-            </label>
+            <label for="rating-5" class="rating-btn">5</label>
           </div>
         </div>
       </form>
 
-      <!-- 제출 버튼 -->
-      <button type="submit" form="rating-form"
-        class="w-full bg-orange-500 text-grey-950 text-preset-5-bold md:text-preset-5-semibold uppercase rounded-full py-4 md:py-[12.5px] transition-colors hover:bg-white hover:text-orange-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-orange-500">
+      <!-- 제출 버튼: form 속성으로 외부에 위치해도 폼 제출 가능 -->
+      <button type="submit" form="rating-form" class="submit-btn">
         Submit
       </button>
 
     </article>
   </main>
 
-  <!-- Thank You State (감사 화면) -->
+  <!-- ============================================
+       Thank You State (감사 화면)
+       - 평점 제출 후 표시되는 완료 화면
+       - JavaScript에서 .hidden 클래스 토글로 표시/숨김 제어
+       ============================================ -->
   <main id="thankyou-state" class="hidden min-h-screen flex items-center justify-center p-spacing-300">
-    <!-- 카드 컨테이너 -->
-    <article
-      class="w-[327px] p-6 md:w-[399px] md:h-[411px] bg-gradient-to-b from-grey-800 to-grey-850 rounded-[15px] sm:rounded-[30px] md:px-spacing-300 md:py-spacing-400 flex flex-col items-center justify-center text-center">
+    <!-- 카드 컨테이너: 데스크톱에서 추가 패딩 적용으로 여유로운 레이아웃 -->
+    <article class="card-container md:px-spacing-400 md:py-spacing-500 items-center justify-center text-center">
 
-      <!-- 감사 이미지 -->
-      <div class="flex justify-center mb-spacing-300 sm:mb-spacing-400">
-        <img src="./images/illustration-thank-you.svg" alt="" aria-hidden="true">
+      <!-- 콘텐츠 영역: 데스크톱에서 최대 340px로 제한하여 가독성 향상 -->
+      <div class="w-full md:max-w-[340px] flex flex-col items-center">
+        <!-- 감사 일러스트레이션: 시각적 피드백 제공 -->
+        <div class="flex justify-center mb-spacing-300 md:mb-spacing-400">
+          <!-- aria-hidden="true": 장식 이미지로 스크린 리더 무시 -->
+          <img src="./images/illustration-thank-you.svg" alt="" aria-hidden="true" class="thank-you-image">
+        </div>
+
+        <!-- 선택된 평점 표시 배지: JavaScript에서 동적으로 값 업데이트 -->
+        <p class="rating-badge mb-spacing-300 md:mb-spacing-400">
+          <!-- &nbsp; 사용 이유: 텍스트 중간 공백이 flexbox로 인해 사라지는 것을 방지 -->
+          You selected&nbsp;<span id="selected-rating">0</span>&nbsp;out of 5
+        </p>
+
+        <h1 class="text-white text-preset-2 md:text-preset-1 font-bold mb-spacing-200">
+          Thank you!
+        </h1>
+
+        <p class="text-grey-500 text-preset-5 md:text-preset-4">
+          We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in
+          touch!
+        </p>
       </div>
-
-      <!-- 선택된 평점 표시 -->
-      <p
-        class="inline-block bg-grey-900 text-orange-500 text-preset-5 sm:text-preset-4 px-5 py-2 rounded-full mb-spacing-300 sm:mb-spacing-400">
-        You selected <span id="selected-rating">0</span> out of 5
-      </p>
-
-      <!-- 감사 제목 -->
-      <h1 class="text-white text-preset-2 sm:text-preset-1 font-bold mb-spacing-100 sm:mb-spacing-200">
-        Thank you!
-      </h1>
-
-      <!-- 감사 메시지 -->
-      <p class="text-grey-500 text-preset-5 sm:text-preset-4">
-        We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in
-        touch!
-      </p>
 
     </article>
   </main>
 
-  <!-- JavaScript 파일 연결: defer를 사용하여 HTML 파싱 완료 후 실행 -->
+  <!-- JavaScript 연결: defer로 DOM 로드 완료 후 실행 보장 -->
   <script src="./src/main.js" defer></script>
 
 </body>

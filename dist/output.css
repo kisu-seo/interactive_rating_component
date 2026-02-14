@@ -564,8 +564,6 @@ body {
 /* 평점 버튼 기본 스타일 */
 
 .rating-btn {
-  aspect-ratio: 1 / 1;
-  width: 100%;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
   background-color: rgb(38 46 56 / var(--tw-bg-opacity, 1));
@@ -604,6 +602,14 @@ body {
   border-width: 0;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .mb-spacing-100 {
   margin-bottom: 8px;
 }
@@ -632,6 +638,10 @@ body {
   height: 2.5rem;
 }
 
+.h-\[42px\] {
+  height: 42px;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -640,16 +650,20 @@ body {
   width: 2.5rem;
 }
 
+.w-\[327px\] {
+  width: 327px;
+}
+
+.w-\[42px\] {
+  width: 42px;
+}
+
 .w-full {
   width: 100%;
 }
 
-.max-w-md {
-  max-width: 28rem;
-}
-
-.flex-1 {
-  flex: 1 1 0%;
+.flex-col {
+  flex-direction: column;
 }
 
 .items-center {
@@ -660,12 +674,8 @@ body {
   justify-content: center;
 }
 
-.justify-between {
-  justify-content: space-between;
-}
-
-.gap-3 {
-  gap: 0.75rem;
+.gap-4 {
+  gap: 1rem;
 }
 
 .rounded-\[15px\] {
@@ -700,6 +710,10 @@ body {
   --tw-gradient-to: #181E27 var(--tw-gradient-to-position);
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .p-spacing-300 {
   padding: 24px;
 }
@@ -714,9 +728,9 @@ body {
   padding-bottom: 0.5rem;
 }
 
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .text-center {
@@ -752,6 +766,11 @@ body {
 .text-grey-500 {
   --tw-text-opacity: 1;
   color: rgb(150 159 173 / var(--tw-text-opacity, 1));
+}
+
+.text-grey-950 {
+  --tw-text-opacity: 1;
+  color: rgb(19 21 24 / var(--tw-text-opacity, 1));
 }
 
 .text-orange-500 {
@@ -824,10 +843,6 @@ body {
     margin-bottom: 16px;
   }
 
-  .sm\:mb-spacing-300 {
-    margin-bottom: 24px;
-  }
-
   .sm\:mb-spacing-400 {
     margin-bottom: 32px;
   }
@@ -840,33 +855,14 @@ body {
     width: 3rem;
   }
 
-  .sm\:gap-4 {
-    gap: 1rem;
-  }
-
   .sm\:rounded-\[30px\] {
     border-radius: 30px;
-  }
-
-  .sm\:p-spacing-400 {
-    padding: 32px;
-  }
-
-  .sm\:py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
   }
 
   .sm\:text-preset-1 {
     font-size: 28px;
     line-height: 35px;
     letter-spacing: 0px;
-  }
-
-  .sm\:text-preset-3 {
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.2px;
   }
 
   .sm\:text-preset-4 {
@@ -877,13 +873,72 @@ body {
 }
 
 @media (min-width: 768px) {
+  @media (min-width: 640px) {
+    .md\:sm\:text-preset-3 {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.2px;
+    }
+  }
+
+  .md\:mb-spacing-100 {
+    margin-bottom: 8px;
+  }
+
+  .md\:mb-spacing-400 {
+    margin-bottom: 32px;
+  }
+
+  .md\:h-\[411px\] {
+    height: 411px;
+  }
+
+  .md\:h-\[51px\] {
+    height: 51px;
+  }
+
+  .md\:w-\[399px\] {
+    width: 399px;
+  }
+
+  .md\:w-\[51px\] {
+    width: 51px;
+  }
+
+  .md\:gap-spacing-300 {
+    gap: 24px;
+  }
+
   .md\:px-spacing-300 {
     padding-left: 24px;
     padding-right: 24px;
   }
 
+  .md\:py-\[12\.5px\] {
+    padding-top: 12.5px;
+    padding-bottom: 12.5px;
+  }
+
   .md\:py-spacing-400 {
     padding-top: 32px;
     padding-bottom: 32px;
+  }
+
+  .md\:text-preset-1 {
+    font-size: 28px;
+    line-height: 35px;
+    letter-spacing: 0px;
+  }
+
+  .md\:text-preset-4 {
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0px;
+  }
+
+  .md\:text-preset-5-semibold {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.17px;
   }
 }

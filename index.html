@@ -25,73 +25,69 @@
   <main id="rating-state" class="min-h-screen flex items-center justify-center p-spacing-300">
     <!-- 카드 컨테이너 -->
     <article
-      class="w-full max-w-md bg-gradient-to-b from-grey-800 to-grey-850 rounded-[15px] sm:rounded-[30px] p-spacing-300 sm:p-spacing-400 md:px-spacing-300 md:py-spacing-400">
+      class="w-[327px] p-6 md:w-[399px] md:h-[411px] bg-gradient-to-b from-grey-800 to-grey-850 rounded-[15px] sm:rounded-[30px] md:px-spacing-300 md:py-spacing-400 flex flex-col justify-center">
 
       <!-- 별 아이콘 -->
       <div
-        class="w-10 h-10 sm:w-12 sm:h-12 bg-grey-900 rounded-full flex items-center justify-center mb-spacing-200 sm:mb-spacing-300">
-        <svg width="17" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path
-            d="m9.067.43 1.99 4.031c.112.228.33.386.58.422l4.45.647a.772.772 0 0 1 .427 1.316l-3.22 3.138a.773.773 0 0 0-.222.683l.76 4.431a.772.772 0 0 1-1.12.813l-3.98-2.092a.773.773 0 0 0-.718 0l-3.98 2.092a.772.772 0 0 1-1.119-.813l.76-4.431a.77.77 0 0 0-.222-.683L.233 6.846A.772.772 0 0 1 .661 5.53l4.449-.647a.772.772 0 0 0 .58-.422L7.68.43a.774.774 0 0 1 1.387 0Z"
-            fill="#FC7614" />
-        </svg>
+        class="w-10 h-10 sm:w-12 sm:h-12 bg-grey-900 rounded-full flex items-center justify-center mb-6 md:mb-spacing-400">
+        <img src="./images/icon-star.svg" alt="" aria-hidden="true">
       </div>
 
       <!-- 제목 -->
-      <h1 class="text-white text-preset-2 sm:text-preset-1 font-bold mb-spacing-100 sm:mb-spacing-200">
+      <h1 class="text-white text-preset-2 md:text-preset-1 font-bold mb-4 md:mb-spacing-100">
         How did we do?
       </h1>
 
       <!-- 설명 텍스트 -->
-      <p class="text-grey-500 text-preset-5 sm:text-preset-4 mb-spacing-300">
+      <p class="text-grey-500 text-preset-5 md:text-preset-4 mb-spacing-200">
         Please let us know how we did with your support request. All feedback is appreciated to help us improve our
         offering!
       </p>
 
       <!-- 평점 선택 폼 -->
-      <form id="rating-form" class="mb-spacing-300 sm:mb-spacing-400">
-        <div class="flex justify-between gap-3 sm:gap-4">
+      <form id="rating-form" class="mb-spacing-300 sm:mb-spacing-400 w-full">
+        <div class="flex justify-center gap-4 md:gap-spacing-300">
           <!-- 평점 버튼 1 -->
-          <div class="flex-1">
+          <div>
             <input type="radio" name="rating" id="rating-1" value="1" class="sr-only peer">
             <label for="rating-1"
-              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
               1
             </label>
           </div>
 
           <!-- 평점 버튼 2 -->
-          <div class="flex-1">
+          <div>
             <input type="radio" name="rating" id="rating-2" value="2" class="sr-only peer">
             <label for="rating-2"
-              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
               2
             </label>
           </div>
 
           <!-- 평점 버튼 3 -->
-          <div class="flex-1">
+          <div>
             <input type="radio" name="rating" id="rating-3" value="3" class="sr-only peer">
             <label for="rating-3"
-              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
               3
             </label>
           </div>
 
           <!-- 평점 버튼 4 -->
-          <div class="flex-1">
+          <div>
             <input type="radio" name="rating" id="rating-4" value="4" class="sr-only peer">
             <label for="rating-4"
-              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
               4
             </label>
           </div>
 
           <!-- 평점 버튼 5 -->
-          <div class="flex-1">
+          <div>
             <input type="radio" name="rating" id="rating-5" value="5" class="sr-only peer">
             <label for="rating-5"
-              class="rating-btn text-preset-5 sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
+              class="rating-btn w-[42px] h-[42px] md:w-[51px] md:h-[51px] text-preset-5-bold md:sm:text-preset-3 peer-checked:rating-btn-selected focus-within:outline focus-within:outline-2 focus-within:outline-orange-500">
               5
             </label>
           </div>
@@ -100,7 +96,7 @@
 
       <!-- 제출 버튼 -->
       <button type="submit" form="rating-form"
-        class="w-full bg-orange-500 text-white text-preset-5-bold uppercase rounded-full py-3 sm:py-4 transition-colors hover:bg-white hover:text-orange-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-orange-500">
+        class="w-full bg-orange-500 text-grey-950 text-preset-5-bold md:text-preset-5-semibold uppercase rounded-full py-4 md:py-[12.5px] transition-colors hover:bg-white hover:text-orange-500 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-orange-500">
         Submit
       </button>
 
@@ -111,21 +107,11 @@
   <main id="thankyou-state" class="hidden min-h-screen flex items-center justify-center p-spacing-300">
     <!-- 카드 컨테이너 -->
     <article
-      class="w-full max-w-md bg-gradient-to-b from-grey-800 to-grey-850 rounded-[15px] sm:rounded-[30px] p-spacing-300 sm:p-spacing-400 md:px-spacing-300 md:py-spacing-400 text-center">
+      class="w-[327px] p-6 md:w-[399px] md:h-[411px] bg-gradient-to-b from-grey-800 to-grey-850 rounded-[15px] sm:rounded-[30px] md:px-spacing-300 md:py-spacing-400 flex flex-col items-center justify-center text-center">
 
       <!-- 감사 이미지 -->
       <div class="flex justify-center mb-spacing-300 sm:mb-spacing-400">
-        <svg width="162" height="108" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none">
-            <path
-              d="M30 93.744h73.645c3.96 0 7.638-2.058 9.7-5.435l26.706-43.744 9.217-15.098c2.12-3.47 5.902-5.573 10.011-5.573 3.96 0 7.638 2.058 9.7 5.435l9.217 15.098 26.706 43.744c2.062 3.377 5.74 5.435 9.7 5.435h73.645"
-              stroke="#FC7614" stroke-width="2" />
-            <circle fill="#FC7614" opacity=".5" cx="81" cy="54" r="32" />
-            <circle fill="#262E38" cx="81" cy="54" r="16" />
-            <circle fill="#FC7614" opacity=".5" cx="5" cy="54" r="16" />
-            <circle fill="#262E38" cx="5" cy="54" r="8" />
-          </g>
-        </svg>
+        <img src="./images/illustration-thank-you.svg" alt="" aria-hidden="true">
       </div>
 
       <!-- 선택된 평점 표시 -->

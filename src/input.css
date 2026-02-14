@@ -12,18 +12,19 @@
 
 /* 커스텀 컴포넌트 (필요 시 추가) */
 @layer components {
+
   /* 평점 버튼 기본 스타일 */
   .rating-btn {
-    @apply w-full aspect-square bg-grey-900 text-grey-500 rounded-full;
+    @apply bg-grey-900 text-grey-500 rounded-full;
     @apply flex items-center justify-center font-bold cursor-pointer;
     @apply transition-colors duration-200;
   }
-  
+
   /* 평점 버튼 호버 상태 */
   .rating-btn:hover {
     @apply bg-orange-500 text-white;
   }
-  
+
   /* 평점 버튼 선택 상태 */
   .rating-btn-selected {
     @apply bg-grey-500 text-white;
